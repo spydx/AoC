@@ -1,0 +1,2 @@
+# AoC
+AoC_LearningHaskellTheHardway
