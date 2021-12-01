@@ -27,7 +27,9 @@ half :: (RealFrac a, Integral b) => a -> b
 half u = ceiling (u/2)
 
 
+rise :: (RealFrac a, Integral b) => a -> a -> b
 rise u i = ceiling (u-(u/(2*i)))
+
 seatrange :: (RealFrac a1, RealFrac a2, Integral a3, Integral b) 
                => a1 -> a2 -> Char -> (a3, b)
 seatrange l u s = case s of
@@ -36,11 +38,12 @@ seatrange l u s = case s of
                _ -> error "Badd INPUT"
 
 
+--range :: (Real a1, Real a2, Real a2, Real a1) => a1 -> a2 -> a2 -> String -> [(a1, a2)]
 range l u i str = case str of
                ('B':left) -> 
                   let lower = rise u i
                       upper = ceiling u 
-                  in ( lower , upper )  : range lower upper (i+1) left
+                  in (( lower , upper )  : range lower upper (i+1) left)
                --('F':left) -> (ceiling l, half u) : range l (u-(u/(2*i))) (i+1) left
 
                --[] -> []
