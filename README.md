@@ -2,7 +2,7 @@
 
 [Advent of Code HomePage](https://adventofcode.com/)
 
-[Advent of Code 2020](2020/Readme.md)
+[Advent of Code 2020](AoC2020/Readme.md)
 
 [Advent of Code 2021](AoC2021/Readme.md)
 
