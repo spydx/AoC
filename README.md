@@ -5,8 +5,3 @@
 [Advent of Code 2020](2020/Readme.md)
 
 This year, as exam prep, I decided to use the opertunity to try to learn Haskell while doing AoC.
-
-
-
-
- Fira Code Retina,Menlo, Monaco, 'Courier New', monospace
