@@ -33,7 +33,7 @@ let rec slidingwindow  current xs count =
 printfn "Hello world AoC"
 let filename = "aoc01.txt"
 let content = readfile filename 
-let count = depthchange (List.head content) content 0 
+let task1_count = depthchange (List.head content) content 0 
 let task2_count = slidingwindow (window content) content 0
-printfn "Task 1: %d" count
+printfn "Task 1: %d" task1_count
 printfn "Task 2: %d" task2_count
