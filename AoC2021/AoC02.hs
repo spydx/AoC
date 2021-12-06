@@ -1,4 +1,4 @@
-module AoC01 where
+module AoC02 where
 
 import Modules.ReadFile (readfile)
 import System.Directory ( doesFileExist )
