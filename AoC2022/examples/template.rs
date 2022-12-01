@@ -1,9 +1,8 @@
-use aoc_2022::{read_lines};
+use aoc_2022::read_lines;
 
-const DAY:&str = ".txt";
+const DAY: &str = ".txt";
 
 fn main() {
-
     part_one();
 
     part_two();
