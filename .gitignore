@@ -1,3 +1,4 @@
+# Haskell
 dist
 dist-*
 cabal-dev
@@ -22,5 +23,12 @@ cabal.project.local~
 .HTF/
 .ghc.environment.*
 
+## F#
 .fake
 .ionide
+
+## Rust
+/target
+/out
+kernel*
+.DS_Store

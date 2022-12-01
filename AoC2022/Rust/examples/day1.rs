@@ -1,3 +1,4 @@
+use std::time::{Instant};
 use std::vec;
 
 use aoc_2022::read_lines;
@@ -5,15 +6,20 @@ use aoc_2022::read_lines;
 const DAY: &str = "day1.txt";
 
 fn main() {
+    let time_part_one = Instant::now();
     part_one();
-
+    println!("Runtime: {:?}\n", time_part_one.elapsed());
+    println!();
+    let time_part_two = Instant::now();
     part_two();
+    println!("Runtime: {:?}", time_part_two.elapsed());
 }
 
 fn part_two() {
     println!("PART II");
     let content = read_lines(DAY).unwrap();
-
+    let time_part_two = Instant::now();
+    
     let mut first: i64 = 0;
     let mut second: i64 = 0;
     let mut third: i64 = 0;
@@ -58,7 +64,7 @@ fn part_two() {
     }
 
     let res: i64 = vec![first, second, third].into_iter().sum();
-
+    println!("Runtime: {:?}", time_part_two.elapsed());
     println!("Searched many {} elfs", elf);
     println!("Found at: {:?}", vec![first_p, second_p, third_p]);
     println!("Total Calories {}", res);
@@ -91,5 +97,5 @@ fn part_one() {
     println!("Searched many {} elfs", elf);
     println!("Found at: {}", position);
     println!("Max Calories {}", max);
-    println!();
+
 }

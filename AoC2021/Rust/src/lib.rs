@@ -23,19 +23,6 @@ where
     let basepath = concat!(env!("CARGO_MANIFEST_DIR"), "/files");
     let mut sourcepath = PathBuf::from(basepath);
     sourcepath.push(filename);
-    let file = File::open(sourcepath)?;
+    let file = File::open(&sourcepath)?;
     Ok(io::BufReader::new(file).lines())
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn filereader_works() {
-        let filename = "example.txt";
-        let content = read_content(filename).unwrap();
-        let name = &content[..7];
-        assert_eq!(name, "Kenneth");
-    }
 }
