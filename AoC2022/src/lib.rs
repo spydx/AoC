@@ -1,4 +1,6 @@
-use std::{io::Error, path::PathBuf};
+use std::{io::{Error, self, BufRead}, path::PathBuf};
+use std::fs::File;
+use std::path::Path;
 
 pub fn read_content(filename: &str) -> Result<String, Error>{
     let sourcepath = concat!(env!("CARGO_MANIFEST_DIR"), "/files");
@@ -9,6 +11,15 @@ pub fn read_content(filename: &str) -> Result<String, Error>{
         Ok(content) => Ok(content),
         Err(err) => Err(err)
     }
+}
+
+pub fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where P: AsRef<Path>, {
+    let basepath = concat!(env!("CARGO_MANIFEST_DIR"), "/files");
+    let mut sourcepath = PathBuf::from(basepath);
+    sourcepath.push(filename);
+    let file = File::open(sourcepath)?;
+    Ok(io::BufReader::new(file).lines())
 }
 
 #[cfg(test)]
