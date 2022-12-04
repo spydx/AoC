@@ -1,4 +1,4 @@
-use std::time::{Instant};
+use std::time::Instant;
 use std::vec;
 
 use aoc_2022::read_lines;
@@ -19,7 +19,7 @@ fn part_two() {
     println!("PART II");
     let content = read_lines(DAY).unwrap();
     let time_part_two = Instant::now();
-    
+
     let mut first: i64 = 0;
     let mut second: i64 = 0;
     let mut third: i64 = 0;
@@ -97,5 +97,4 @@ fn part_one() {
     println!("Searched many {} elfs", elf);
     println!("Found at: {}", position);
     println!("Max Calories {}", max);
-
 }

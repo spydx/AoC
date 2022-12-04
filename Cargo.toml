@@ -4,3 +4,6 @@ members = [
     "AoC2021/Rust",
     "AoC2022/Rust",
 ]
+
+[profile.dev]
+opt-level = 3

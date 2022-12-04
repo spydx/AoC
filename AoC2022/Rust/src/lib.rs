@@ -5,6 +5,8 @@ use std::{
     path::PathBuf,
 };
 
+pub type FileBuffer = io::Lines<io::BufReader<File>>;
+
 pub fn read_content(filename: &str) -> Result<String, Error> {
     let sourcepath = concat!(env!("CARGO_MANIFEST_DIR"), "/files");
     let mut sourcepath = PathBuf::from(sourcepath);
