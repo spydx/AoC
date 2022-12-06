@@ -21,10 +21,12 @@ fn part_one() {
     let content = read_lines(DAY).unwrap();
     for line in content {
         if let Ok(current_line) = line {
+            let time_part_one = Instant::now();
             println!(
                 "start-of-packetmarker: {}",
-                search_sequence(current_line, 4)
+                search_sequence(current_line.as_str(), 4)
             );
+            println!("Runtime: {:?}\n", time_part_one.elapsed());
         }
     }
 }
@@ -34,15 +36,17 @@ fn part_two() {
     let content = read_lines(DAY).unwrap();
     for line in content {
         if let Ok(current_line) = line {
+            let time_part_one = Instant::now();
             println!(
                 "start-of-packetmarker: {}",
-                search_sequence(current_line, 14)
+                search_sequence(current_line.as_str(), 14)
             );
+            println!("Runtime: {:?}\n", time_part_one.elapsed());
         }
     }
 }
 
-fn search_sequence(sequence: String, length: usize) -> i32 {
+fn search_sequence(sequence: &str, length: usize) -> i32 {
     let mut window: VecDeque<char> = VecDeque::<char>::new();
     let mut pos = 0;
     for c in sequence.chars() {
@@ -64,31 +68,67 @@ fn search_sequence(sequence: String, length: usize) -> i32 {
 mod test {
 
     use crate::search_sequence;
+    const FOUR: usize = 4;
+    const FOURTEEN: usize = 14;
 
+    const SEQ1: &str = "mjqjpqmgbljsphdztnvjfqwrcgsmlb";
+    const SEQ2: &str = "bvwbjplbgvbhsrlpgdmjqwftvncz";
+    const SEQ3: &str = "nppdvjthqldpwncqszvftbrmjlhg";
+    const SEQ4: &str = "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg";
+    const SEQ5: &str = "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw";
+    
     #[test]
-    fn should_find_seven() {
-        let sequence = "mjqjpqmgbljsphdztnvjfqwrcgsmlb".to_string();
-        let res = search_sequence(sequence);
-        assert_eq!(res, 7)
-    }
-
-    #[test]
-    fn should_find_five() {
-        let sequence = "bvwbjplbgvbhsrlpgdmjqwftvncz".to_string();
-        let res = search_sequence(sequence);
-        assert_eq!(res, 5)
-    }
-    #[test]
-    fn should_find_ten() {
-        let sequence = "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg".to_string();
-        let res = search_sequence(sequence);
-        assert_eq!(res, 10)
+    fn four_should_find_seven() {
+        let res = search_sequence(SEQ1, FOUR);
+        assert_eq!(res, 7);
     }
 
     #[test]
-    fn should_find_eleven() {
-        let sequence = "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw".to_string();
-        let res = search_sequence(sequence);
-        assert_eq!(res, 11)
+    fn four_should_find_five() {
+        let res = search_sequence(SEQ2,FOUR);
+        assert_eq!(res, 5);
     }
+    #[test]
+    fn four_should_find_ten() {
+        let res = search_sequence(SEQ4,FOUR);
+        assert_eq!(res, 10);
+    }
+
+    #[test]
+    fn four_should_find_eleven() {
+        
+        let res = search_sequence(SEQ5,FOUR);
+        assert_eq!(res, 11);
+    }
+    
+    #[test]
+    fn fourteen_should_find_nineteen() {
+        let res = search_sequence(SEQ1, FOURTEEN);
+        assert_eq!(res, 19);
+    }
+
+    #[test]
+    fn fourteen_should_find_twentytree_seq3() {
+        let res = search_sequence(SEQ3, FOURTEEN);
+        assert_eq!(res, 23);
+    }
+
+    #[test]
+    fn fourteen_should_find_twentytree() {
+        let res = search_sequence(SEQ2, FOURTEEN);
+        assert_eq!(res, 23);
+    }
+    #[test]
+    fn fourteen_should_find_twentynine() {
+        
+        let res = search_sequence(SEQ4, FOURTEEN);
+        assert_eq!(res, 29);
+    }
+
+    #[test]
+    fn fourteen_should_find_twentysix() {
+        let res = search_sequence(SEQ5, FOURTEEN);
+        assert_eq!(res, 26);
+    }
+
 }
