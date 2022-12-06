@@ -13,7 +13,11 @@ fn main() {
     println!("Runtime: {:?}", time_part_two.elapsed());
 }
 
-fn part_one(filename: &str, item: usize, f: fn(usize, usize, usize, HashMap<usize, String>) -> HashMap<usize, String>) {
+fn part_one(
+    filename: &str,
+    item: usize,
+    f: fn(usize, usize, usize, HashMap<usize, String>) -> HashMap<usize, String>,
+) {
     println!("PART I");
     let content = read_lines(filename).unwrap();
 
@@ -28,7 +32,7 @@ fn part_one(filename: &str, item: usize, f: fn(usize, usize, usize, HashMap<usiz
                 stack.push(current_line);
             } else if current_line.is_empty() {
                 stack.pop();
-                map = build_map(&stack,item);
+                map = build_map(&stack, item);
                 makemove = true;
             } else {
                 let (count, from, to) = get_move(current_line);
@@ -72,7 +76,7 @@ fn extract_line(line: String) -> Vec<char> {
 }
 
 fn get_move(line: String) -> (usize, usize, usize) {
-    println!("{}",line);
+    println!("{}", line);
     let numbers: Vec<i32> = line
         .split_whitespace()
         .filter_map(|s| {
@@ -110,16 +114,12 @@ fn make_move(
 
     to_values.append(&mut move_block);
 
-    let to_values: String = to_values
-        .into_iter()
-        .rev()
-        .collect();
+    let to_values: String = to_values.into_iter().rev().collect();
 
     map.insert(from, from_values);
     map.insert(to, to_values);
     println!("{:?}", map);
     map
-
 }
 
 fn make_move_sameorder(
@@ -143,18 +143,13 @@ fn make_move_sameorder(
 
     to_values.append(&mut move_block);
 
-    let to_values: String = to_values
-        .into_iter()
-        .rev()
-        .collect();
+    let to_values: String = to_values.into_iter().rev().collect();
 
     map.insert(from, from_values);
     map.insert(to, to_values);
     println!("{:?}", map);
     map
-
 }
-
 
 fn get_result(map: HashMap<usize, String>, item: usize) -> String {
     let mut result = String::from("");

@@ -24,3 +24,6 @@ fn part_two() {
     let content = read_lines(DAY).unwrap();
     todo!()
 }
+
+#[cfg(test)]
+mod test {}
