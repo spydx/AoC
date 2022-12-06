@@ -27,13 +27,12 @@ fn part_two() {
     println!("Number of pairs: {}", number_of_pairs)
 }
 
-
 fn process_lines(_content: FileBuffer, f: fn(l1: Vec<i32>, l2: Vec<i32>) -> bool) -> i32 {
     let mut number_of_pairs = 0;
     for line in _content {
         if let Ok(current_line) = line {
             let (first_pair, second_pair) = get_pair_range(current_line.as_str());
-            if f(first_pair, second_pair) { 
+            if f(first_pair, second_pair) {
                 number_of_pairs += 1;
             }
         }
@@ -43,7 +42,8 @@ fn process_lines(_content: FileBuffer, f: fn(l1: Vec<i32>, l2: Vec<i32>) -> bool
 
 fn range_overlap(first_pair: Vec<i32>, second_pair: Vec<i32>) -> bool {
     //let mut common: Vec<i32> = vec![];
-    let first_result = first_pair.clone()
+    let first_result = first_pair
+        .clone()
         .into_iter()
         .map(|x| {
             if second_pair.contains(&x) {
@@ -54,40 +54,33 @@ fn range_overlap(first_pair: Vec<i32>, second_pair: Vec<i32>) -> bool {
         })
         .all(|value| value == true);
 
-    let second_result = second_pair.clone()
+    let second_result = second_pair
+        .clone()
         .into_iter()
-        .map(|x| {
-            if first_pair.contains(&x) {
-                true
-            } else {
-                false
-            }
-        }).all(|value| value == true);
-    
+        .map(|x| if first_pair.contains(&x) { true } else { false })
+        .all(|value| value == true);
+
     first_result || second_result
 }
 
 fn range_overlap_part2(first_pair: Vec<i32>, second_pair: Vec<i32>) -> bool {
-    let first_result = first_pair.clone()
-    .into_iter()
-    .map(|x| {
-        if second_pair.contains(&x) {
-            true
-        } else {
-            false
-        }
-    })
-    .any(|value| value == true);
-
-    let second_result = second_pair.clone()
+    let first_result = first_pair
+        .clone()
         .into_iter()
         .map(|x| {
-            if first_pair.contains(&x) {
+            if second_pair.contains(&x) {
                 true
             } else {
                 false
             }
-        }).any(|value| value == true);
+        })
+        .any(|value| value == true);
+
+    let second_result = second_pair
+        .clone()
+        .into_iter()
+        .map(|x| if first_pair.contains(&x) { true } else { false })
+        .any(|value| value == true);
     first_result || second_result
 }
 
@@ -98,19 +91,21 @@ fn get_number_range(range: Vec<&str>) -> (i32, i32) {
 }
 
 fn get_pair_range(par: &str) -> (Vec<i32>, Vec<i32>) {
-    let vector:Vec<&str> = par.split(',').collect();
+    let vector: Vec<&str> = par.split(',').collect();
     let first = vector.first().unwrap().split('-').collect();
     let second = vector.last().unwrap().split('-').collect();
 
-    
     let first_range = get_number_range(first);
     let second_range = get_number_range(second);
 
-    let first_pair = (first_range.0..first_range.1 + 1).map(|x| x as i32).collect();
-    let second_pair = (second_range.0..second_range.1 + 1).map(|x| x as i32).collect();
+    let first_pair = (first_range.0..first_range.1 + 1)
+        .map(|x| x as i32)
+        .collect();
+    let second_pair = (second_range.0..second_range.1 + 1)
+        .map(|x| x as i32)
+        .collect();
     (first_pair, second_pair)
 }
-
 
 #[cfg(test)]
 mod test {
@@ -126,7 +121,7 @@ mod test {
         assert!(firstrange.contains(&2) && firstrange.contains(&3) && firstrange.contains(&4));
         assert!(secondrange.contains(&6) && secondrange.contains(&7) && secondrange.contains(&8));
     }
-   
+
     #[test]
     fn get_pair_range_from_input_largenumbers() {
         let pairstring = "12-80,12-81";
@@ -152,7 +147,6 @@ mod test {
         let contains = range_overlap(first_pair, second_pair);
         assert_eq!(contains, true);
     }
-
 
     #[test]
     fn should_contain_range_single() {
