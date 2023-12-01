@@ -6,7 +6,7 @@ Each day is an example in the `/examples` folder.
 ## Run a day
 
 ```sh
-> cargo run --examples day1
+> cargo run --example day1
 ```
 
 a
