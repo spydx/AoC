@@ -1,8 +1,9 @@
 [workspace]
-
+resolver = "2"
 members = [
     "AoC2021/Rust",
     "AoC2022/Rust",
+    "aoc2023"
 ]
 
 [profile.dev]

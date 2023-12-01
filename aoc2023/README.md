@@ -1,4 +1,4 @@
-# Advent of Code in Rust 2022
+# Advent of Code in Rust 2023
 
 This is built as a Library with Examples.
 Each day is an example in the `/examples` folder.
@@ -8,5 +8,3 @@ Each day is an example in the `/examples` folder.
 ```sh
 > cargo run --examples day1
 ```
-
-a
