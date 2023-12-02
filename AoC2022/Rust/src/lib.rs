@@ -35,7 +35,7 @@ mod tests {
 
     #[test]
     fn filereader_works() {
-        let filename = "example.txt";
+        let filename = "examples.txt";
         let content = read_content(filename).unwrap();
         let name = &content[..7];
         assert_eq!(name, "Kenneth");

@@ -1,11 +1,9 @@
-use std::fmt::format;
-
 fn main() {
     let file = include_str!("day1.txt");
     let part1_res = part1(file);
     println!("Part1: {}", part1_res);
     let part2_res = part2(file);
-    println!("Part2 :{}", part2_res);
+    println!("Part2: {}", part2_res);
 }
 
 fn part1(file: &str) -> u32 {
@@ -16,8 +14,8 @@ fn part1(file: &str) -> u32 {
     numbers.iter().sum()
 }
 
-fn part2(file: &str) -> u32 {
-    let numbers: Vec<u32> = file.lines()
+fn part2(file: &str) -> usize {
+    let numbers: Vec<usize> = file.lines()
         .map(|line| part2_linesolve(line))
         .collect();
 
@@ -35,57 +33,48 @@ fn part1_linesolve(line: &str) -> u32 {
     result.parse::<u32>().unwrap()
 }
 
-fn part2_linesolve(line: &str) -> u32 {
+fn part2_linesolve(line: &str) -> usize {
+    let pattern = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    let mut positions: Vec<(bool, usize, &str)> = pattern.iter()
+        .map(|pattern| find_pattern(line, pattern))
+        .flatten()
+        .filter(|(map, _, _)| map == &true)
+        .collect();
 
-    let mut digits:Vec<&str> = vec![];
+    positions.sort();
 
-    for c in line.chars() {
-        if c.is_alphabetic() {
-            let word: &[char] = line.chars()
-                .take_while(|c| c.is_alphabetic())
-                .into_iter()
-                .collect();
+    let first = str_to_number(positions.first().unwrap().2);
+    let last = str_to_number(positions.last().unwrap().2);
+    let result = format!("{first}{last}");
+    result.parse::<usize>().unwrap()
+}
 
-            digits.push(word.to_string().as_str());
-        } else if c.is_digit(10) {
-            let n = c.to_string().as_str();
-            digits.push(n);
-        }
+// find stops at first true, we need to find all true in a line
+fn find_pattern<'a>(line: &str, pattern: &'a str) -> Vec<(bool, usize, &'a str)> {
+    let mut postitions: Vec<(bool, usize, &'a str)> = vec![];
+
+    if let Some(position) = line.find(&pattern) {
+        postitions.push((true, position, pattern));
+    }
+    if let Some(position) = line.rfind(&pattern) {
+        postitions.push((true, position, pattern));
     }
 
-    let first = digits.first().unwrap();
-    let last = digits.last().unwrap();
-    let result = format!("{}{}", first, last);
-    result.parse::<u32>().unwrap()
-
-//     let strs: Vec<&str> = line
-//         .split(&['0','1','2','3','4','5','6','7','8','9'])
-//         .collect();
-//
-//     let numbers: Vec<&str> = strs
-//         .into_iter()
-//         .map(|n| str_to_number)
-//         .collect();
-//
-//     let first = numbers.first();
-//     let last = numbers.last();
-//     let result = format!("{first}{last}");
-//     result.parse::<u32>().unwrap()
+    postitions
 }
 
 fn str_to_number(n: &str) -> &str {
     match n {
-        "zero"|"0" => "0",
-        "one"|"1" => "1",
-        "two"|"2" => "2",
-        "tree"|"3" => "3",
-        "four"|"4" => "4",
-        "five"|"5" => "5",
-        "six"|"6" => "6",
-        "seven"|"7" => "7",
-        "eight"|"8" => "8",
-        "nine"|"9" => "9",
-        _ => "",
+        "one" | "1" => "1",
+        "two" | "2" => "2",
+        "three" | "3" => "3",
+        "four" | "4" => "4",
+        "five" | "5" => "5",
+        "six" | "6" => "6",
+        "seven" | "7" => "7",
+        "eight" | "8" => "8",
+        "nine" | "9" => "9",
+        _ => "0",
     }
 }
 
@@ -127,14 +116,15 @@ mod test {
 
     #[test]
     fn part2_linetest() {
-        let number = part2_linesolve("two1nine");
-        assert_eq!(number, 29);
-    }
-
-    #[test]
-    fn test() {
-        let line = "two1nine";
-        let collection: Vec<&str> = line.split_inclusive(&['1','2']).collect();
-        assert_eq!(["two", "1", "nine"].to_vec(), collection);
+        // let number = part2_linesolve("two1nine");
+        // assert_eq!(number, 29);
+        //
+        // let number = part2_linesolve("sevenine");
+        // assert_eq!(number, 79);
+        //
+        // let number = part2_linesolve("eighthree");
+        // assert_eq!(number, 83);
+        let number = part2_linesolve("'fournr8ltltldqsmcd5threetwothree");
+        assert_eq!(number, 43);
     }
 }
