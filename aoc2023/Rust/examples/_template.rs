@@ -6,19 +6,21 @@ fn main() {
     println!("Part2: {}", part2_res);
 }
 
-
 fn part1(_file: &str) -> usize {
     0
 }
 
-fn part1_linesolve(_line: &str) -> usize { 0 }
+fn part1_linesolve(_line: &str) -> usize {
+    0
+}
 
 fn part2(_file: &str) -> usize {
     0
 }
 
-fn part2_linesolve(_line: &str) -> usize { 0 }
-
+fn part2_linesolve(_line: &str) -> usize {
+    0
+}
 
 #[cfg(test)]
 mod test {
