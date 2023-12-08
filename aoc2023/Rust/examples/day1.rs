@@ -7,7 +7,8 @@ fn main() {
 }
 
 fn part1(file: &str) -> u32 {
-    let numbers: Vec<u32> = file.lines()
+    let numbers: Vec<u32> = file
+        .lines()
         .map(|line| part1_linesolve(line))
         .collect();
 
@@ -23,7 +24,8 @@ fn part2(file: &str) -> usize {
 }
 
 fn part1_linesolve(line: &str) -> u32 {
-    let digits: Vec<char> = line.chars()
+    let digits: Vec<char> = line
+        .chars()
         .filter(|x| x.is_digit(10))
         .collect();
 
@@ -34,8 +36,12 @@ fn part1_linesolve(line: &str) -> u32 {
 }
 
 fn part2_linesolve(line: &str) -> usize {
-    let pattern = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    let mut positions: Vec<(bool, usize, &str)> = pattern.iter()
+    let pattern = [
+        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "1", "2", "3", "4",
+        "5", "6", "7", "8", "9",
+    ];
+    let mut positions: Vec<(bool, usize, &str)> = pattern
+        .iter()
         .map(|pattern| find_pattern(line, pattern))
         .flatten()
         .filter(|(map, _, _)| map == &true)
@@ -112,7 +118,6 @@ mod test {
         let result_part2 = part2(file);
         assert_eq!(result_part2, 281);
     }
-
 
     #[test]
     fn part2_linetest() {

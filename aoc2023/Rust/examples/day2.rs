@@ -7,14 +7,13 @@ fn main() {
 }
 
 fn part1(file: &str) -> usize {
-    let mapped: Vec<Game> = file.lines()
+    let mapped: Vec<Game> = file
+        .lines()
         .map(part1_linesolve)
         .filter(|g| g.possible)
         .collect();
 
-    let result = mapped.iter()
-        .map(|g| g.id)
-        .sum();
+    let result = mapped.iter().map(|g| g.id).sum();
 
     result
 }
@@ -60,7 +59,8 @@ fn part1_linesolve(line: &str) -> Game {
 
     let shown_cubes = find_cubes(splitstring.last().unwrap());
 
-    let possible = shown_cubes.iter()
+    let possible = shown_cubes
+        .iter()
         .all(|(red, blue, green)| green.count <= 13 && blue.count <= 14 && red.count <= 12);
 
     Game {
@@ -77,9 +77,18 @@ fn find_cubes(remainder: &str) -> Vec<(Cube, Cube, Cube)> {
     for r in reveals {
         let string_cubes: Vec<&str> = r.split([',']).collect();
 
-        let mut r = Cube { color: CubeColor::Red, count: 0 };
-        let mut b = Cube { color: CubeColor::Blue, count: 0 };
-        let mut g = Cube { color: CubeColor::Green, count: 0 };
+        let mut r = Cube {
+            color: CubeColor::Red,
+            count: 0,
+        };
+        let mut b = Cube {
+            color: CubeColor::Blue,
+            count: 0,
+        };
+        let mut g = Cube {
+            color: CubeColor::Green,
+            count: 0,
+        };
 
         for string_cube in string_cubes {
             let mut cubedata: Vec<&str> = string_cube.split(" ").collect();
@@ -90,7 +99,7 @@ fn find_cubes(remainder: &str) -> Vec<(Cube, Cube, Cube)> {
                 &"red" => r.count = count,
                 &"blue" => b.count = count,
                 &"green" => g.count = count,
-                _ => panic!("Unknown color")
+                _ => panic!("Unknown color"),
             };
         }
         shown_cubes.push((r, b, g));
@@ -99,16 +108,15 @@ fn find_cubes(remainder: &str) -> Vec<(Cube, Cube, Cube)> {
     shown_cubes
 }
 
-
 fn part2(file: &str) -> usize {
-    let res: usize = file.lines()
+    let res: usize = file
+        .lines()
         .map(part2_linesolve)
         .map(|g| g.power())
         .into_iter()
         .sum();
     res
 }
-
 
 fn part2_linesolve(line: &str) -> GameMinSize {
     let splitstring: Vec<&str> = line.split(':').collect();
@@ -142,7 +150,6 @@ fn part2_linesolve(line: &str) -> GameMinSize {
 #[cfg(test)]
 mod test {
     use super::*;
-
 
     // Only game 1, 2, 5 are good, sum game ids is 8.
     #[test]
