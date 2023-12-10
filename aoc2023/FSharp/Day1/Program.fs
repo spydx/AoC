@@ -30,7 +30,7 @@ let part_line (line: string) =
     charToInt first last
 
 
-let filterBool struct(b: bool, i: int, ch:string) = b.Equals(true)
+let filterBool struct(b: bool, i: int, ch:string) : bool = b.Equals(true)
 
 let exists (line:string) (pat: string) =
     match line.Contains pat with
@@ -45,7 +45,7 @@ let patternMatch (line: string) (pattern: List<string>) =
     |> List.map (exists line)
 
 
-let stripBool struct(b: bool, i: int, ch: string) = (i, ch)
+let stripBool struct(_: bool, i: int, ch: string) = (i, ch)
 
 let mapToStringInt str =
     match str with
@@ -63,7 +63,7 @@ let mapToStringInt str =
 
 let  mapTupleToInt (i: int, ch: string) = mapToStringInt ch
 
-let part2_line (line: string) =
+let part2_line (line: string) : int =
     let pattern = ["one"; "two"; "three"; "four"; "five"; "six"; "seven"; "eight"; "nine"; "1"; "2"; "3"; "4";"5";"6";"7";"8";"9"]
     let digits = patternMatch line pattern
                  |> List.collect id
