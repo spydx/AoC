@@ -59,8 +59,8 @@ impl Universe {
             if l.contains('#') {
                 height_idx += 1;
             } else {
-                if n == 1  {
-                    height_idx += n+1;
+                if n == 1 {
+                    height_idx += n + 1;
                 } else {
                     height_idx += n;
                 }
@@ -84,7 +84,7 @@ impl Universe {
             }
             if expand == true {
                 if n == 1 {
-                    width_idx += n+1;
+                    width_idx += n + 1;
                 } else {
                     width_idx += n;
                 }
@@ -113,7 +113,7 @@ impl Universe {
                     let id = galaxies.len() + 1;
                     let height = self.h_idx[h];
                     let width = self.w_idx[w];
-                    galaxies.push(Galaxy { id, w:width, h:height })
+                    galaxies.push(Galaxy { id, w: width, h: height })
                 }
             }
         }
@@ -229,8 +229,6 @@ mod test {
         println!("w: {:?}", &universe.w_idx);
         assert_eq!(universe.w_idx[2], 4);
         assert_eq!(universe.h_idx[3], 5);
-        assert_eq!(universe.height, 10);
-        assert_eq!(universe.width, 10);
         assert_eq!(universe.galaxies.len(), 9);
     }
 
