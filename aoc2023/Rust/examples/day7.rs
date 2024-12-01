@@ -308,7 +308,7 @@ fn part2(_file: &str) -> usize {
         .lines()
         .map(part2_linesolve)
         .collect();
-
+    println!("{:?}", hands_and_bets);
     hands_and_bets.sort();
     for hand in &hands_and_bets {
         println!("{:?}", hand.0);
