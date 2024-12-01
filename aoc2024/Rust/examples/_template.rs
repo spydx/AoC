@@ -10,7 +10,7 @@ fn part1(_file: &str) -> usize {
     0
 }
 
-fn part1_linesolve(_line: &str) -> usize {
+fn part1_line_solve(_line: &str) -> usize {
     0
 }
 
@@ -18,7 +18,7 @@ fn part2(_file: &str) -> usize {
     0
 }
 
-fn part2_linesolve(_line: &str) -> usize {
+fn part2_line_solve(_line: &str) -> usize {
     0
 }
 
@@ -30,14 +30,11 @@ mod test {
     fn part1_input() {}
 
     #[test]
-    fn part1_lineinput() {}
-
-    #[test]
-    fn part1_lineinput_falsy() {}
+    fn part1_line_input() {}
 
     #[test]
     fn part2_input() {}
 
     #[test]
-    fn part2_lineinput() {}
+    fn part2_line_input() {}
 }

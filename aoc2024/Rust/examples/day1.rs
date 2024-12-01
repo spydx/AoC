@@ -10,7 +10,7 @@ fn part1(file: &str) -> usize {
     let mut lhs = vec![];
     let mut rhs = vec![];
     for line in file.lines() {
-        let (left, right) = part1_linesolve(&line);
+        let (left, right) = part1_line_solve(&line);
         lhs.push(left);
         rhs.push(right);
     }
@@ -34,7 +34,7 @@ fn part1(file: &str) -> usize {
         .sum()
 }
 
-fn part1_linesolve(_line: &str) -> (i32, i32) {
+fn part1_line_solve(_line: &str) -> (i32, i32) {
     let parts = _line.split_ascii_whitespace()
         .map(|s| s.parse::<i32>().unwrap())
         .collect::<Vec<_>>();
@@ -45,7 +45,7 @@ fn part2(file: &str) -> i32 {
     let mut lhs = vec![];
     let mut rhs = vec![];
     for line in file.lines() {
-        let (left, right) = part1_linesolve(&line);
+        let (left, right) = part1_line_solve(&line);
         lhs.push(left);
         rhs.push(right);
     }
@@ -83,10 +83,7 @@ mod test {
     }
 
     #[test]
-    fn part1_lineinput() {}
-
-    #[test]
-    fn part1_lineinput_falsy() {}
+    fn part1_line_input() {}
 
     #[test]
     fn part2_input() {
@@ -101,5 +98,5 @@ mod test {
     }
 
     #[test]
-    fn part2_lineinput() {}
+    fn part2_line_input() {}
 }
